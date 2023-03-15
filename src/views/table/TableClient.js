@@ -44,8 +44,8 @@ const TableClient = (props) => {
 
   const { t } = useTranslation();
 
-  const nextPage = (idUser) => {
-    navigate("/second-page",{state:{id:idUser}});
+  const nextPage = (idUser,nameUser) => {
+    navigate("/second-page",{state:{id:idUser,name:nameUser}});
   }
 
 
@@ -94,14 +94,14 @@ const TableClient = (props) => {
     {
       name: "Correo",
       sortable: true,
-      minWidth: "210px",
+      minWidth: "190px",
       maxWidth: "90px",
       selector: (row) => row.Correo
     },
     {
       name: "Dirreción",
       sortable: true,
-      minWidth: "400px",
+      minWidth: "360px",
       maxWidth: "90px",
       selector: (row) => ( row.Direccion
       ),
@@ -144,7 +144,7 @@ const TableClient = (props) => {
 
         </Button>
 
-        <Button className="me-1"  onClick={()=>nextPage(row.ID)}  >
+        <Button className="me-1"  onClick={()=>nextPage(row.ID,row.Nombre)}  >
         <Mail size={18} />
         </Button >
         <Button  color="secondary" className="me-1 bg-secondary">

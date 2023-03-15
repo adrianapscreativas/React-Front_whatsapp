@@ -6,6 +6,7 @@ import { useContext, Suspense } from "react"
 import { AbilityContext } from "@src/utility/context/Can"
 
 const PrivateRoute = ({ children, route }) => {
+  console.log("🚀 ~ PrivateRoute ~ route:", route);
   // ** Hooks & Vars
   const ability = useContext(AbilityContext)
   const user = JSON.parse(localStorage.getItem("userData"))
@@ -24,9 +25,9 @@ const PrivateRoute = ({ children, route }) => {
       return <Navigate to="/login" />
     }
     if (user && restrictedRoute) {
-      return <Navigate to="/" />
+      return <Navigate to="/home" />
     }
-    if (user && restrictedRoute && user.role === "client") {
+    if (user && restrictedRoute && user.role === "Client" || user && restrictedRoute && user.role === "Admin") {
       return <Navigate to="/access-control" />
     }
     if (user && !ability.can(action || "read", resource)) {

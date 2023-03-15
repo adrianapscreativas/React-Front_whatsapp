@@ -31,9 +31,9 @@ const Data = (props) => {
   
   const [searchInpu,setSearchInput] = useState(undefined)
   const [endDate, setEndDate] = useState(undefined);
-  const { dataRetrieve ,getDataGlobal} = props;
-
-  const nameCliente = "Nuevo Cliente"
+  const { dataRetrieve ,getDataGlobal,giveName} = props;
+  
+  const nameCliente = giveName
 
 
   const onInitDateChange = (value) => {

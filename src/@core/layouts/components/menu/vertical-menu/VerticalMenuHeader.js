@@ -36,7 +36,7 @@ const VerticalMenuHeader = (props) => {
         <Disc
           size={20}
           data-tour="toggle-icon"
-          className="text-primary toggle-icon d-none d-xl-block"
+          className="text-primary toggle-icon d-none d-xl-block text-success"
           onClick={() => setMenuCollapsed(true)}
         />
       )
@@ -61,9 +61,9 @@ const VerticalMenuHeader = (props) => {
             className="navbar-brand"
           >
             <span className="brand-logo">
-              <img src={themeConfig.app.appLogoImage} alt="logo" />
+              {/* <img src={themeConfig.app.appLogoImage} alt="logo" /> */}
             </span>
-            <h2 className="brand-text mb-0">{themeConfig.app.appName}</h2>
+            <h2 className="brand-text mb-0 text-success">{themeConfig.app.appName}</h2>
           </NavLink>
         </li>
         <li className="nav-item nav-toggle">

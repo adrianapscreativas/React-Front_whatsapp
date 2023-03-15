@@ -18,6 +18,7 @@ const token = localStorage.getItem("token");
 
 const Home = () => {
     const [dataRetrieve, setDataRetrieve] = useState(undefined);
+    const [perPage,setPerPage]=useState(100)
     const [search,setSearch] = useState('')
     console.log("🚀 ~ file: Home.js:21 ~ Home ~ search:", search)
   let pages = 50;
@@ -26,7 +27,7 @@ const Home = () => {
   };
     console.log("🚀 ~ file: Home.js:27 ~ Home ~ token:", token)
 
-    const baseUrl = `https://zawszacdg2.execute-api.us-east-2.amazonaws.com/dev/api/v1/user?inputSearch=${search}`;
+    const baseUrl = `https://zawszacdg2.execute-api.us-east-2.amazonaws.com/dev/api/v1/user?inputSearch=${search}&per_page=${perPage}`;
 
 const getUser= () => {
   axios.get(`${baseUrl}`,config).then((response) => {

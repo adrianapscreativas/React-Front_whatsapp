@@ -12,7 +12,7 @@ import Data from "./table/TableData";
 
 
 const SecondPage = () => {
-  const {state:{id}} = useLocation();
+  const {state:{id,name}} = useLocation();
   
   console.log("🚀 ~ file: SecondPage.js:16 ~ SecondPage ~ id:", id)
   const [dataRetrieve, setDataRetrieve] = useState(undefined);
@@ -68,7 +68,7 @@ const searchValue = (value) => {
           {/* <InvoiceList dataRetrieve={dataRetrieve} /> */}
           {/* <TableResult dataRetrieve={dataRetrieve} /> */}
         </Col>
-        <Data dataRetrieve={dataRetrieve} getDataGlobal={getDataGlobal} />
+        <Data dataRetrieve={dataRetrieve} getDataGlobal={getDataGlobal} giveName={name} />
 
       </Row>
     </>
