@@ -6,6 +6,15 @@ import { lazy } from "react";
 const Login = lazy(() => import("../../views/Login"));
 
 const AuthenticationRoutes = [
+  {
+    path: '/login',
+    element: <Login />,
+    meta: {
+      layout: 'blank',
+      publicRoute: true,
+      restricted: true
+    }
+  },
   // {
   //   path: "/home",
   //   element: <Home />,
@@ -14,17 +23,17 @@ const AuthenticationRoutes = [
   //   path: "/second-page",
   //   element: <SecondPage />,
   // },
-  {
-    path: "/login",
-    element: <Login />,
-    index: true,
-    meta: {
-      publicRoute: true,
-      restricted: true,
+  // {
+  //   path: "/login",
+  //   element: <Login />,
+  //   index: true,
+  //   meta: {
+  //     publicRoute: true,
+  //     restricted: true,
 
-      layout: "blank",
-    },
-     }
+  //     layout: "blank",
+  //   },
+    //  }
   // {
   //   path: "/error",
   //   element: <Error />,

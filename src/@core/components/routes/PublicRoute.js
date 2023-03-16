@@ -8,11 +8,12 @@ import { getUserData, getHomeRouteForLoggedInUser } from "@utils"
 const PublicRoute = ({ children, route }) => {
   if (route) {
     const user = getUserData()
+    // console.log("🚀 ~ PublicRoute ~ role:", user);
 
     const restrictedRoute = route.meta && route.meta.restricted
 
     if (user && restrictedRoute) {
-      return <Navigate to={getHomeRouteForLoggedInUser(user.role)} />
+      return <Navigate to={getHomeRouteForLoggedInUser(user)} />
     }
   }
 

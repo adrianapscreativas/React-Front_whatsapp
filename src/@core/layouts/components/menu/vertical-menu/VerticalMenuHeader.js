@@ -57,7 +57,7 @@ const VerticalMenuHeader = (props) => {
       <ul className="nav navbar-nav flex-row">
         <li className="nav-item me-auto">
           <NavLink
-            to={user ? getHomeRouteForLoggedInUser(user.role) : "/"}
+            to={user ? getHomeRouteForLoggedInUser(user) : "/"}
             className="navbar-brand"
           >
             <span className="brand-logo">
