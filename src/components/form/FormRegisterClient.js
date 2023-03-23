@@ -18,6 +18,10 @@ const FormRegisterClient =  (props) => {
   const [loading, setLoading] = useState(false);
 
   const {onChangeValue,getUser} = props
+    // console.log("🚀 ~ FormRegisterClient ~ getUser:", getUser);    
+    // console.log("🚀 ~ FormRegisterClient ~ getUserInvokeFunction:", getUser());
+
+    
     const { handleSubmit, control, formState } = useForm({
         mode: "onSubmit",
         reValidateMode: "onSubmit",
@@ -49,10 +53,11 @@ axios
     text: "Inversion Agregada",
   });
   onChangeValue(false);
-  reset()
   getUser()
+  reset()
 
 })
+
 .catch((error) => {
   setLoading(false);
   Swal.fire({

@@ -2,6 +2,7 @@ import jwt_decode from "jwt-decode";
 
 const Redirect = async (userID, navigate) => {
   const retreiveGroup = jwt_decode(userID);
+  console.log("🚀 ~ Redirect ~ retreiveGroup:", retreiveGroup);
   // console.log( "aqui entro " ,userID);
   //   const id = localStorage.getItem("userID");
   if (
@@ -11,6 +12,8 @@ const Redirect = async (userID, navigate) => {
     console.log("ko");
     navigate("/home");
   } else {
+    console.log("🚀 ~ Redirect ~ error:", "ene el errror");
+
     navigate("/");
   }
 };

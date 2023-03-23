@@ -24,6 +24,8 @@ import {
   Col,
 } from "reactstrap";
 import { Button } from "react-bootstrap";
+import ModalUpdateClient from "../../components/modal/ModalUpdateClient";
+import ModalKey from "../../components/modal/ModalKey";
 
 const TableClient = (props) => {
   const navigate = useNavigate();
@@ -34,7 +36,9 @@ const TableClient = (props) => {
   const [filteredData, setFilteredData] = useState([]);
   const [pagePeer, setPagePeer] = useState(10);
   const [searchData,setSearchData] = useState('')
-  const { dataRetrieve } = props;
+  const { dataRetrieve ,getUser} = props;
+  const [giveData, setGiveData]=useState()
+  console.log("🚀 ~ TableClient ~ giveData:", giveData);
   // console.log("🚀 ~ file: TableData.js:42 ~ Data ~ dataRetrieve:", dataRetrieve)
 
 
@@ -48,6 +52,9 @@ const TableClient = (props) => {
     navigate("/second-page",{state:{id:idUser,name:nameUser}});
   }
 
+  const nextPageUpdate=()=> {
+
+  }
 
   const onChangeDataValue = (e) => {
     setSearchData(e.target.value)
@@ -119,7 +126,7 @@ const TableClient = (props) => {
       sortable: true,
       minWidth: "100px",
       maxWidth: "50px",
-      selector: (row) => (
+      selector: (row) =>(
         <Badge
           color={
             row.Estatus === "active"
@@ -139,18 +146,11 @@ const TableClient = (props) => {
       minWidth: "150px",
 
       selector: (row) => <div>
-        <Button color="info" className="me-1 bg-info " >
-        <Edit size={18} />
-
-        </Button>
-
+        <ModalUpdateClient giveData={row} getUser={getUser} />
         <Button className="me-1"  onClick={()=>nextPage(row.ID,row.Nombre)}  >
         <Mail size={18} />
-        </Button >
-        <Button  color="secondary" className="me-1 bg-secondary">
-        <Key size={18} />
-
         </Button>
+        <ModalKey giveData={row} getUser={getUser} />
         
       </div>
     },
@@ -165,7 +165,7 @@ const TableClient = (props) => {
     //       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}%`,
     // },
   ];
-  const data2 = dataRetrieve.data.rows.map((item) => {
+  const data2 = dataRetrieve && dataRetrieve.data && dataRetrieve.data.rows.map((item) => {
     return {
       ID: item.id ?? 0,
       Nombre: item.name ?? 0,
@@ -174,7 +174,7 @@ const TableClient = (props) => {
       Direccion: item.address ?? 0,
       Saldo: item.saldo ?? 0,
       Estatus: item.status ?? 0,
-      // Amount: item.token ?? 0,
+      Key: item.key ?? 0
       // Utility: item.user_id ?? 0,
     };
   });
@@ -268,7 +268,7 @@ const TableClient = (props) => {
   // );
 
   return (
-    <Card className="shadow  w-100  ">
+    <Card className="shadow  w-100 pt-1 ">
       {/* <CardHeader className="border-bottom">
         <CardTitle tag="h4">Total</CardTitle>
       </CardHeader> */}
@@ -278,12 +278,13 @@ const TableClient = (props) => {
           sm="12"
           className="d-flex align-items-center justify-content-center mt-1"
         >
-         <Label className="me-1" for="search-input-1">
+         {/* <Label className="me-1" for="search-input-1">
             {t("Filtrar")}
-          </Label>
+          </Label> */}
           <Input
             className="dataTable-filter mb-50 me-2"
             type="text"
+            placeholder="Buscar por nomber o correo"
             bsSize="sm"
             id="search-input-1"
             onChange={onChangeDataValue}
@@ -319,17 +320,10 @@ const TableClient = (props) => {
       </Row>
       <Col className="react-dataTable ">
         <DataTable
-          // noHeader
           pagination
-          // selectableRowsNoSelectAll
           columns={multiLingColumns}
           paginationComponentOptions={paginationComponentOptions}
-          // noHeader
           className="react-dataTable"
-          // paginationPerPage={pagePeer}
-          // sortIcon={<ChevronDown size={50} />}
-          // paginationDefaultPage={currentPage + 1}
-          // paginationComponent={CustomPagination}
           data={searchValue.length ? filteredData : data}
         />
       </Col>

@@ -20,6 +20,7 @@ import logo from '../assets/images/pages/login-v2.svg'
 import axios from "axios";
 import Redirect from "../utility/redirect/Redirect"
 import DecodeToken from "../utility/decode/DecodeToken"
+import themeConfig from "@configs/themeConfig"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -136,7 +137,7 @@ const Login = () => {
         >
           <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
             <CardTitle tag="h2" className="fw-bold mb-1">
-              Bienvenido 👋
+              Bienvenido  WhatsPy👋
             </CardTitle>
             <CardText className="mb-2">
             Inicie sesión en su cuenta y comience la aventura.

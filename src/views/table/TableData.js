@@ -249,8 +249,8 @@ let  numMessage= 0;
           <Col md="6">
         <CardTitle   tag="h4">Cliente:  {nameCliente}</CardTitle>
         </Col>
-        <Col md="3" className="bs-light-border-subtle offset-md-3">
-        <CardTitle   tag="h4" className="align-self-end" >Mensajes Enviados:  {numMessage}</CardTitle>
+        <Col md="3" className="bs-light-border-subtle offset-md-3 ">
+        <CardTitle  tag="h4" className="text-end" >Mensajes Enviados:  {numMessage}</CardTitle>
         </Col>
       </CardHeader>
 
@@ -262,12 +262,12 @@ let  numMessage= 0;
           className="d-flex align-items-center justify-content-center mt-1"
         >
             <Label className="me-1" for="search-input-1">
-            {t("Filtro")}
           </Label> 
            <Input 
             className="dataTable-filter mb-50"
             type="text"
             bsSize="sm"
+            placeholder="Buscar por mensaje o destinatario"
             id="search-input-1"
             onChange={onChangeInput}
           />

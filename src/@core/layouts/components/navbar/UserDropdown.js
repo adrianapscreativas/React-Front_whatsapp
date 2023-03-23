@@ -47,6 +47,7 @@ const UserDropdown = () => {
           </span>
           {/* <span className="user-status">Admin</span> */}
         </div>
+        
         {/* <Avatar
           img={defaultAvatar}
           imgHeight="40"
@@ -55,10 +56,10 @@ const UserDropdown = () => {
         /> */}
       </DropdownToggle>
       <DropdownMenu end>
-        {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
+         {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
           <User size={14} className="me-75" />
           <span className="align-middle">Profile</span>
-        </DropdownItem>
+        </DropdownItem> 
         <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
           <Mail size={14} className="me-75" />
           <span className="align-middle">Inbox</span>
@@ -87,10 +88,10 @@ const UserDropdown = () => {
         <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
           <HelpCircle size={14} className="me-75" />
           <span className="align-middle">FAQ</span>
-        </DropdownItem> */}
+        </DropdownItem>  */}
         <DropdownItem tag={Link} to="/login" onClick={clearSession}>
           <Power size={14} className="me-75" />
-          <span className="align-middle">Cerrar Sesión</span>
+          <span className="">Cerrar Sesión</span>
         </DropdownItem>
       </DropdownMenu>
     </UncontrolledDropdown>

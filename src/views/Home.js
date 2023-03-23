@@ -20,26 +20,27 @@ const Home = () => {
     const [dataRetrieve, setDataRetrieve] = useState(undefined);
     const [perPage,setPerPage]=useState(100)
     const [search,setSearch] = useState('')
-    console.log("🚀 ~ file: Home.js:21 ~ Home ~ search:", search)
+    // console.log("🚀 ~ file: Home.js:21 ~ Home ~ search:", search)
   let pages = 50;
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
-    console.log("🚀 ~ file: Home.js:27 ~ Home ~ token:", token)
+    // console.log("🚀 ~ file: Home.js:27 ~ Home ~ token:", token)
 
     const baseUrl = `https://zawszacdg2.execute-api.us-east-2.amazonaws.com/dev/api/v1/user?inputSearch=${search}&per_page=${perPage}`;
 
+
 const getUser= () => {
+  setDataRetrieve(undefined);
   axios.get(`${baseUrl}`,config).then((response) => {
     setDataRetrieve(response.data);
   });
 }
 
+
 useEffect(() => {
  getUser()
   }, [search]);
-
-
 
     if (undefined === dataRetrieve) {
     return <SpinnerComponent />;
@@ -52,13 +53,13 @@ useEffect(() => {
     <div>
       <Card>
         <CardHeader>
-        <Container>
-          <Row>
-            <Col md={4}> <CardTitle>Lista de Clientes</CardTitle></Col>
-            <Col md={{ span: 4, offset: 4 }}  className="d-flex justify-content-end"><ModalRegisterClient  getUser={getUser} /> </Col>
+        <Container className="justify-content-around">
+          <Row className="justify-content-around">
+            <Col md={4} sm={6} > <CardTitle>Lista de Clientes</CardTitle></Col>
+            <Col md={{ span: 4, offset: 4 }} sm={6}  className="d-flex justify-content-end"><ModalRegisterClient  getUser={getUser} /> </Col>
           </Row>    
         </Container>
-        <TableClient dataRetrieve={dataRetrieve}  retrieveFilter={retrieveFilter}/>
+        <TableClient dataRetrieve={dataRetrieve}  retrieveFilter={retrieveFilter} getUser={getUser}/>
 
 
         </CardHeader>
