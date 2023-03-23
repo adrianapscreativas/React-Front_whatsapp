@@ -203,43 +203,7 @@ let  numMessage= 0;
     setCurrentPage(page.selected);
   };
 
-  // ** Function to handle filter
-  // const handleFilter = (e) => {
-  //   const value = e.target.value;
-  //   let updatedData = [];
-  //   setSearchValue(value);
-  //   // if (value.length) {
-  //   //   updatedData = data.filter((item) => {
-  //   //     console.log("item", item.Resultado);
-  //   //     const startsWith = item.Resultado.toLowerCase().startsWith(
-  //   //       value.toLowerCase()
-  //   //     );
-  //   //     // item.Fecha.toLowerCase().startsWith(value.toLowerCase()) ;
-  //   //     // item.average_stake.toLowerCase().startsWith(value.toLowerCase()) ||
-  //   //     // item.bet.toLowerCase().startsWith(value.toLowerCase()) ||
-  //   //     // item.result.toLowerCase().startsWith(value.toLowerCase()) ||
-  //   //     // item.amount.toLowerCase().startsWith(value.toLowerCase()) ||
-  //   //     // item.utility_porcentage.toLowerCase().startsWith(value.toLowerCase());
 
-  //   //     const includes = item.Resultado.toLowerCase().startsWith(
-  //   //       value.toLowerCase()
-  //   //     );
-  //   //     // item.average_stake.toLowerCase().startsWith(value.toLowerCase()) ||
-  //   //     // item.bet.toLowerCase().startsWith(value.toLowerCase()) ||
-  //   //     // item.result.toLowerCase().startsWith(value.toLowerCase()) ||
-  //   //     // item.amount.toLowerCase().startsWith(value.toLowerCase()) ||
-  //   //     // item.utility_porcentage.toLowerCase().startsWith(value.toLowerCase());
-
-  //   //     if (startsWith) {
-  //   //       return startsWith;
-  //   //     } else if (!startsWith && includes) {
-  //   //       return includes;
-  //   //     } else return null;
-  //   //   });
-  //   //   setFilteredData(updatedData);
-  //   //   setSearchValue(value);
-  //   // }
-  // };
 
   return (
     <Card className="shadow  w-100  ">
