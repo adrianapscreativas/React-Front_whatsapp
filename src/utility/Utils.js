@@ -66,7 +66,7 @@ export const getUserData = () => localStorage.getItem("role");
  * @param {String} userRole Role of user
  */
 export const getHomeRouteForLoggedInUser = (userRole) => {
-  console.log("🚀 ~ getHomeRouteForLoggedInUser ~ userRole:", userRole);
+  // console.log("🚀 ~ getHomeRouteForLoggedInUser ~ userRole:", userRole);
   if (userRole === "Admin") return "/home";
   if (userRole === "Client") return "/home";
   return "/login";

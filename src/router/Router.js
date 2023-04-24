@@ -27,12 +27,12 @@ const Router = () => {
   const allRoutes = getRoutes(layout)
   const getHomeRoute = () => {
     const  user  = getUserData()
-    console.log("🚀 ~ getHomeRoute ~ user:", user);
+    // console.log("🚀 ~ getHomeRoute ~ user:", user);
     if (user) {
-      console.log("🚀 ~ getHomeRoute ~ user:", user);
+      // console.log("🚀 ~ getHomeRoute ~ user:", user);
       return getHomeRouteForLoggedInUser(user)
     } else {
-      console.log("🚀 ~ Redirect ~ routers:"," error login");
+      // console.log("🚀 ~ Redirect ~ routers:"," error login");
 
       return '/login'
     }

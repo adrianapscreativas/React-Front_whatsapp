@@ -7,10 +7,10 @@ export default [
     icon: <Home size={20} />,
     navLink: "/home"
   },
-  // {
-  //   id: "secondPage",
-  //   title: "Second Page",
-  //   icon: <Mail size={20} />,
-  //   navLink: "/second-page"
-  // }
+  {
+    id: "secondPage",
+    title: "Plantillas",
+    icon: <Mail size={20} />,
+    navLink: "/template"
+  }
 ]

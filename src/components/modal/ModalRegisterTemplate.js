@@ -15,21 +15,20 @@ import {
 import { useForm, useController } from "react-hook-form";
 
 const baseURL = process.env.REACT_APP_URL_BACKEND_AWS
-const ModalUpdateClient =(props) => {
+const ModalRegisterTemplate =(props) => {
   const [loading, setLoading] = useState(false);
 
   const {giveData,getTemplate} = props
-    // console.log("🚀 ~ ModalUpdateClient ~ props:", giveData);
 
   const { handleSubmit, control, formState } = useForm({
     mode: "onSubmit",
     reValidateMode: "onSubmit",
     defaultValues: {
-      name: giveData.Nombre || "",
-      cellphone:giveData.Telefono || "",  
-      email: giveData.Correo || "",
-      address: giveData.Direccion || "",
-      saldo: giveData.Saldo || ""  
+      name:"",
+      description:"",  
+      parameters:"",
+      body:"",
+      type: ""  
     },
   });
   const { errors } = formState;
@@ -43,7 +42,7 @@ const ModalUpdateClient =(props) => {
     const handleShow = () => setShow(true);
 
    const onChangeValue = (value) => {
-      console.log("🚀 ~ file: ModalRegisterClient.js:43 ~ ModalRegisterClient ~ value:", value)
+      // console.log("🚀 ~ file: ModalRegisterClient.js:43 ~ ModalRegisterClient ~ value:", value)
       handleClose(value)
     }
      
@@ -58,7 +57,7 @@ const ModalUpdateClient =(props) => {
 
 
 
-axios.put(`${baseURL}user-update/${giveData.ID}`, { name:value.name, address: value.address,cellphone: value.cellphone,email: value.email,saldo: value.saldo},config,
+axios.post(`${baseURL}template`, { name:value.name,description: value.description,parameters: value.parameters,body: value.body,type: value.type},config,
   )
 .then((response) => {
   setLoading(false);
@@ -101,53 +100,40 @@ axios.put(`${baseURL}user-update/${giveData.ID}`, { name:value.name, address: va
     });
 
     const {
-      field: { ref: cellphoneRef, ...cellphoneField },
+      field: { ref: descriptionRef, ...descriptionField },
     } = useController({
-      name: "cellphone",
+      name: "description",
       control,
       rules: {
         required: {
           value: true,
-          message: "El teléfono es requerido",
-        },
-        minLength: {
-          value: 10,
-          message: "El teléfono debe tener mínimo 10 caracteres",
-        },
-        maxLength: {
-          value: 10,
-          message: "El teléfono debe tener máximo minimo 10 caracteres",
-        },
+          message: "La descripción es requerida",
+        }
  
       },
     });
     const {
-      field: { ref: emailRef, ...emailField },
+      field: { ref: parametersRef, ...parametersField },
     } = useController({
-      name: "email",
+      name: "parameters",
       control,
       rules: {
         required: {
           value: true,
-          message: "El Correo es requerido",
-        },
-        pattern: {
-          value:
-            /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-          message: "Coloque un correo valido",
-        },
+          message: "Los parametros son requeridos",
+        }
       },
     });
 
     const {
-      field: { ref: addressRef, ...addressField },
+      field: { ref: bodyRef, ...bodyField },
     } = useController({
-      name: "address",
+      name: "body",
       control,
       rules: {
         required: {
           value: true,
-          message: "La dirección es requerida",
+          message: "El cuerpo es requerido",
         },
  
       },
@@ -155,14 +141,14 @@ axios.put(`${baseURL}user-update/${giveData.ID}`, { name:value.name, address: va
 
 
     const {
-      field: { ref: saldoRef, ...saldoField },
+      field: { ref: typeRef, ...typeField },
     } = useController({
-      name: "saldo",
+      name: "type",
       control,
       rules: {
         required: {
           value: true,
-          message: "El saldo es requerido",
+          message: "El tipo es requerido",
         },
  
       },
@@ -170,8 +156,8 @@ axios.put(`${baseURL}user-update/${giveData.ID}`, { name:value.name, address: va
 
     
     return (<> 
-     <Button variant="info" color="info" className="me-1 bg-info " onClick={handleShow}>
-     <Edit size={18} />
+     <Button variant="primary" color="primary" className="me-1 bg-info " onClick={handleShow}>
+     Registrar Plantilla
     </Button>
 
     <Modal
@@ -181,7 +167,7 @@ axios.put(`${baseURL}user-update/${giveData.ID}`, { name:value.name, address: va
       keyboard={false}
     >
       <Modal.Header >
-        <Modal.Title>Editar Cliente</Modal.Title>
+        <Modal.Title>Registrar Plantilla.</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {/* <FormRegisterClient onChangeValue={onChangeValue}  getTemplate={getTemplate} /> */}
@@ -207,71 +193,71 @@ axios.put(`${baseURL}user-update/${giveData.ID}`, { name:value.name, address: va
       )}
     </div>
     <div className="mb-1">
-      <Label className="form-label " for="cellphone" >
-        <h6>Teléfono</h6> 
+      <Label className="form-label " for="description" >
+        <h6>Descripción</h6> 
       </Label>
       <Input
-        type="number"
-        id="cellphone"
-        placeholder="telefono"
+        type="text"
+        id="description"
+        placeholder="Descripción"
         autoFocus
-        ref={cellphoneRef}
-        {...cellphoneField}
+        ref={descriptionRef}
+        {...descriptionField}
       />
 
-      {errors.cellphone && (
-        <p className="text-danger">{errors.cellphone.message} </p>
+      {errors.description && (
+        <p className="text-danger">{errors.description.message} </p>
       )}
     </div>
     <div className="mb-1">
       <Label className="form-label" for="login-email">
-        <h6>Correo</h6>
+        <h6>Parametros</h6>
       </Label>
       <Input
-        type="text"
+        type="number"
         id="login-email"
-        value="correo@live.com"
+        placeholder="Numero de paramtros"
         autoFocus
-        ref={emailRef}
-        {...emailField}
+        ref={parametersRef}
+        {...parametersField}
       />
 
-      {errors.email && (
-        <p className="text-danger">{errors.email.message} </p>
+      {errors.parameters && (
+        <p className="text-danger">{errors.parameters.message} </p>
       )}
     </div>
     <div className="mb-1">
       <Label className="form-label" for="address">
-        <h6>Dirección</h6>
+        <h6>Cuerpo de la Plantilla</h6>
       </Label>
       <Input
         type="text"
         id="address"
-        placeholder="dirección"
+        placeholder="Ingrese el cuerpo de la plantilla"
         autoFocus
-        ref={addressRef}
-        {...addressField}
+        ref={bodyRef}
+        {...bodyField}
       />
 
-      {errors.address && (
-        <p className="text-danger">{errors.address.message} </p>
+      {errors.body && (
+        <p className="text-danger">{errors.body .message} </p>
       )}
     </div>
     <div className="mb-1">
       <Label className="form-label" for="saldo">
-        <h6>Saldo</h6>
+        <h6>Tipo</h6>
       </Label>
       <Input
         type="text"
         id="saldo"
-        placeholder="saldo"
+        placeholder="Ingrese el tipo  Texto o Numero"
         autoFocus
-        ref={saldoRef}
-        {...saldoField}
+        ref={typeRef}
+        {...typeField}
       />
 
-      {errors.saldo && (
-        <p className="text-danger">{errors.saldo.message} </p>
+      {errors.type && (
+        <p className="text-danger">{errors.type.message} </p>
       )}
     </div>
     <Button
@@ -293,7 +279,6 @@ axios.put(`${baseURL}user-update/${giveData.ID}`, { name:value.name, address: va
                 ) : (
                   "Registrar"
                 )}{" "}
-        Actualizar
     </Button>
     </Form>
       </Modal.Body>
@@ -312,4 +297,4 @@ axios.put(`${baseURL}user-update/${giveData.ID}`, { name:value.name, address: va
     )
 }
 
-export default ModalUpdateClient;
+export default ModalRegisterTemplate;
